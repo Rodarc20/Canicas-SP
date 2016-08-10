@@ -1,2 +1,2 @@
 # Canicas
-Proyeto para taller de IHC
+Proyecto para el taller de IHC
