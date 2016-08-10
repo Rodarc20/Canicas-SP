@@ -10,10 +10,10 @@ public class PlayerAim : MonoBehaviour {//el jugador en toria es un solo punto, 
     private string m_RotateAxisName;
     private float m_TraslateInputValue;
     private float m_RotateInputValue;
-    private Rigidbody m_Rigidbody;
+    //private Rigidbody m_Rigidbody;
 
     private void Awake(){
-        m_Rigidbody = GetComponent<Rigidbody>();
+        //m_Rigidbody = GetComponent<Rigidbody>();
     }
 
     private void Start() {
@@ -22,7 +22,7 @@ public class PlayerAim : MonoBehaviour {//el jugador en toria es un solo punto, 
     }
 
     private void OnEnable(){//quiza deba ser publica, por el intercambio de turnos de los jugadores, tendre que habilitar y deshabilitar la bolita del jugador, y constantemente resetear su posicio
-        m_Rigidbody.isKinematic = false;
+        //m_Rigidbody.isKinematic = false;
         m_TraslateInputValue = 0f;
         m_RotateInputValue = 0f;
     }
