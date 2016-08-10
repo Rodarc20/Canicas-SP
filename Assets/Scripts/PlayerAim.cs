@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerAim : MonoBehaviour {//el jugador en toria es un solo punto, es decir la camara no se movera cuadno el jugador lance su canica, por lo tanto debe ser separado
     public int m_PlayerNumber = 1;
-    public float m_TraslateSpeed = 10f;
+    public float m_TraslateSpeed = 50f;
     public float m_RotateSpeed = 90f;
     public Transform m_CenterGameZone;//que dberia estar en la posicion 0, 0.5, 0
 
@@ -34,7 +34,7 @@ public class PlayerAim : MonoBehaviour {//el jugador en toria es un solo punto, 
 
     private void FixedUpdate(){
         Traslate();
-        //Rotate();
+        Rotate();
     }
 
     private void Traslate(){
@@ -48,8 +48,9 @@ public class PlayerAim : MonoBehaviour {//el jugador en toria es un solo punto, 
         //deberia moverse su rigidbody tambien//mientras esta cosa se mueva deberia ser kinematic, mejor dicho solo cuando dispare dejara de ser kinematic, y no podramoverse
     }
 
-    //private void Rotate(){
-
-    //}
-
+    private void Rotate(){
+        transform.Rotate(Vector3.up * m_RotateInputValue * m_RotateSpeed * Time.deltaTime);//debo limitar eso, para ello puedo establecer cierto limistas al inicio, y hsegurarme que este vector resultante, no se aslga de esos valores
+        //en algun mometo, la direccion rotara, para aumentar el angulo, a un angulo de disparo, en este momento este codigo no funcionara, la rotacion se tendra que dar con respecto al eje y, pero general
+        // transform.Rotate(Vector3.up * m_RotateInputValue * m_RotateSpeed * Time.deltaTime, Space.World);//debo limitar eso, para ello puedo establecer cierto limistas al inicio, y hsegurarme que este vector resultante, no se aslga de esos valores
+    }
 }
