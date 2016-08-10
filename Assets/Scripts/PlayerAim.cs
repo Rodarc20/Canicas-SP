@@ -34,14 +34,22 @@ public class PlayerAim : MonoBehaviour {//el jugador en toria es un solo punto, 
 
     private void FixedUpdate(){
         Traslate();
-        Rotate();
+        //Rotate();
     }
 
     private void Traslate(){
         //este tranlacion debe conservar la rotacion, con respecto al circulo de juego que este en cada momento, mejor dicho, el frente del jugador, siempre esta mirando al centro del circulo, la camara siempre mira en esa direccion
         //el movimiento de giro, no se da en linea recota, si no de forma circular al rededor del la zona de juego
         //esta translacion se da al rededro del centro de la zona de juego
-        //transform.
+        //m_Rigidbody.isKinematic = true;
+        transform.RotateAround(m_CenterGameZone.position, Vector3.up /*new Vector3 (0f, 1f, 0f)*/, m_TraslateSpeed * m_TraslateInputValue * Time.deltaTime);
+        //esta funcion conserva que el los ejes conserven la posicion realitva, por ejemplo al comienzo forwar mira al centro de la zona, de juego, esto aun se conserva
+        //m_Rigidbody.isKinematic = false;
+        //deberia moverse su rigidbody tambien//mientras esta cosa se mueva deberia ser kinematic, mejor dicho solo cuando dispare dejara de ser kinematic, y no podramoverse
     }
+
+    //private void Rotate(){
+
+    //}
 
 }
