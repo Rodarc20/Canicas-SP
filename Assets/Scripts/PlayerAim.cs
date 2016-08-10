@@ -17,7 +17,7 @@ public class PlayerAim : MonoBehaviour {//el jugador en toria es un solo punto, 
     }
 
     private void Start() {
-        m_TraslateAxisName = "Traslate" + m_PlayerNumber;
+        m_TraslateAxisName = "Traslate" + m_PlayerNumber;//los dos jugadores usan las mismas teclas para interactuar, por lo tanto el nombre de los ejes deberia ser el mismo//esto tendre que modifiacar
         m_RotateAxisName = "Rotate" + m_PlayerNumber;
     }
 
