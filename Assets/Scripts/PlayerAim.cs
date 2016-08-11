@@ -27,6 +27,9 @@ public class PlayerAim : MonoBehaviour {//el jugador en toria es un solo punto, 
         m_RotateInputValue = 0f;
     }
 
+    private void OnDisable(){
+        
+    }
     private void Update(){//aqui detecto si hay teclas presionadas
         m_TraslateInputValue = Input.GetAxis(m_TraslateAxisName);
         m_RotateInputValue = Input.GetAxis(m_RotateAxisName);// si pusiera esto solo dentro de fixed update la rotacion no tiene efecto fisico, creo, por lo tanto cuando presion para ortar nunca entrara en fixed update
@@ -49,8 +52,8 @@ public class PlayerAim : MonoBehaviour {//el jugador en toria es un solo punto, 
     }
 
     private void Rotate(){
-        transform.Rotate(Vector3.up * m_RotateInputValue * m_RotateSpeed * Time.deltaTime);//debo limitar eso, para ello puedo establecer cierto limistas al inicio, y hsegurarme que este vector resultante, no se aslga de esos valores
+        //transform.Rotate(Vector3.up * m_RotateInputValue * m_RotateSpeed * Time.deltaTime);//debo limitar eso, para ello puedo establecer cierto limistas al inicio, y hsegurarme que este vector resultante, no se aslga de esos valores
         //en algun mometo, la direccion rotara, para aumentar el angulo, a un angulo de disparo, en este momento este codigo no funcionara, la rotacion se tendra que dar con respecto al eje y, pero general
-        // transform.Rotate(Vector3.up * m_RotateInputValue * m_RotateSpeed * Time.deltaTime, Space.World);//debo limitar eso, para ello puedo establecer cierto limistas al inicio, y hsegurarme que este vector resultante, no se aslga de esos valores
+        transform.Rotate(Vector3.up * m_RotateInputValue * m_RotateSpeed * Time.deltaTime, Space.World);//debo limitar eso, para ello puedo establecer cierto limistas al inicio, y hsegurarme que este vector resultante, no se aslga de esos valores
     }
 }
