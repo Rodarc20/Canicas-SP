@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour {
     public CameraControl m_CameraControl;
     //deberia tener referencias a la ui para poder contar
     public Text m_Score;
+    public Text m_WinText;
     public Slider m_ForceSlider;
 
     public GameObject m_ObjetivoPrefab;
@@ -30,7 +31,7 @@ public class GameManager : MonoBehaviour {
         m_Player.GetComponent<PlayerAim>().m_CenterGameZone = m_GameZone.GetComponent<Transform>();
         m_Player.GetComponent<PlayerAim>().m_SpawnPoint = m_SpawnPosition;
         m_Player.GetComponent<PlayerThrow>().m_Fuerza = m_ForceSlider;
-        //m_Player.GetComponent<PlayerThrow>().Setup();
+        m_Player.GetComponent<PlayerThrow>().Setup();//quiza al instanciarse, solo deberia geenrar su propia bola
         SetCameraTarget();//quiza esto deberia estar dentro de spaenplayer();
     }
 
@@ -53,18 +54,22 @@ public class GameManager : MonoBehaviour {
 
     void OnTriggerExit(Collider other){
         //GameObject m_canica = other.GetComponent<GameObject>();
-        print("On trigger exit");
+        //print("On trigger exit");
         GameObject m_canica = other.gameObject;
         if(m_canica.layer == LayerMask.NameToLayer("Objetivo")){//tengo que revisar que sea un objetivo, para sumar, y ver si es un jugador para no sumar, en ambos casos la bola se elimna}
-            print("objetivo");
+            //print("objetivo");
             m_Puntos++;
         }
         if(m_canica.layer == LayerMask.NameToLayer("Jugador")){
-            print("jugador");
+            //print("jugador");
             m_Player.GetComponent<PlayerThrow>().Setup();//quiza no deberia reinicar la camara, o tener dos funcines, una para reinicar balon, y otra para reiniciar posicion
+            //aqui se deberia activar el script throw
             m_LanzamientoNumero++;
         }
         SetTextScore();
+        if(m_Puntos == m_NumeroCanicas)
+            m_WinText.color = Color.white;
+
         Destroy(other.gameObject, 2f);
     }
     public void SetTextScore(){

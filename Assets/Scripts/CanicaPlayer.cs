@@ -7,7 +7,7 @@ public class CanicaPlayer : MonoBehaviour {
     public Rigidbody m_Rigidbody;
     public Transform m_Player;//este es la posicion del Jugador
     //public Transform m_CanicaPlayer;//creo q ue esto no es necesario
-
+    public PlayerThrow m_PlayerThrow;
     public void Awake(){
         m_Rigidbody = GetComponent<Rigidbody>();
         m_Fired = false;
@@ -20,7 +20,10 @@ public class CanicaPlayer : MonoBehaviour {
     }
 
     public void Fire(Vector3 fuerza){
-        m_Fired = true;
-        m_Rigidbody.AddForce(fuerza, ForceMode.Impulse);
+        if(!m_Fired){
+            m_Fired = true;
+            m_Rigidbody.AddForce(fuerza, ForceMode.Impulse);
+            //deberia descativar el script PlayerThrow, y activarse denuevo cuando se cree una nuva canica
+        }
     }
 }

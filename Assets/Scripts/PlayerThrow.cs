@@ -27,7 +27,7 @@ public class PlayerThrow : MonoBehaviour {
     void Start(){
         m_ThrowButton = "Fire1";
         m_ChargeSpeed = (m_MaxForce - m_MinForce) / m_MaxChargeTime;
-        Setup();
+        //Setup()//por ahora lo llamo dentro de spawnPlayer en el gamemanager
 
     }
     private void OnEnable(){
@@ -41,8 +41,10 @@ public class PlayerThrow : MonoBehaviour {
         m_CurrentThrowForce = m_MinForce;
         m_CanicaPlayer = Instantiate(m_CanicaPlayerPrefab, transform.position, transform.rotation) as GameObject;
         if(m_CanicaPlayer){
-            m_CanicaPlayer.GetComponent<CanicaPlayer>().m_Player = transform;
             m_ScriptCP = m_CanicaPlayer.GetComponent<CanicaPlayer>();
+            m_ScriptCP.m_Player = transform;
+            //m_CanicaPlayer.GetComponent<CanicaPlayer>().m_Player = transform;
+            //m_CanicaPlayer.GetComponent<CanicaPlayer>().m_Player = transform;
         }
         //tambien deberia regresar a la posicion inical
         //m_PlayerAim.m_CanicaPlayer = m_CanicaPlayer.transform;
