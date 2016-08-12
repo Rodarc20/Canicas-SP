@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour {
             m_Puntos++;
         }
         if(m_canica.layer == LayerMask.NameToLayer("Jugador")){
-            print("SALIO UN ------------------------- jugador");
+            print("jugador");
             m_Player.GetComponent<PlayerThrow>().Setup();
             m_LanzamientoNumero++;
         }
@@ -58,5 +58,5 @@ public class GameManager : MonoBehaviour {
         string s = "Puntos: " + m_Puntos + "\nLanzamientos: " + m_LanzamientoNumero;
         m_Score.text = s;
     }
-
-}
+    //seria bueno tener un segundo collider para evitar, la desaparicioninstantanea, y para cuadno algun jugadro lance mal, deberia haber otra forma de calcular cuando reiniciar, por ejeplo si el jugador lanza muyyyyyy despacio
+}   

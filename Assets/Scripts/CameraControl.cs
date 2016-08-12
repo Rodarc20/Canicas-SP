@@ -18,19 +18,14 @@ public class CameraControl : MonoBehaviour {//esta cosa deberia esar en dentro d
     }
     public void Update(){//era Last
         transform.position = m_Player.transform.position;//pero esto deberia ser relativo
-        Quaternion rotate = m_Player.transform.rotation * Quaternion.AngleAxis(45f, Vector3.right);
-        //rotate.y = 0f;
+        Quaternion rotate = m_Player.transform.rotation * Quaternion.AngleAxis(45f, Vector3.right);//para corregir la rotacion, por haber tomado el spawnpint como inical
         transform.rotation = rotate;//pero esto deberia ser relativo
-        print(transform.rotation);
-//        print(transform.position);
     }
     public void SetStartPosition(){
         transform.position = m_InicialPosition;
         transform.rotation = m_InicialRotation;
     }
-    public void SetToPlayer(){
-        SetStartPosition();
-        //o llmara a reinicio
-        //m_Offset = m_Player.transform.position - transform.position;
+    public void SetToPlayer(){//seria necesaria si utilizo varios jugadores
+        SetStartPosition();//para que sigan al jugador y no el 
     }
 }
