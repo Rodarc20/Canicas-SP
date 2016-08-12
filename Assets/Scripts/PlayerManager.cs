@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public class PlayerManager {//no estoy usando esta cosa
+public class PlayerManager {//no estoy usando esta cosa, seria util si usara varios jugadores
     public Color m_PlayerColor;
     public Transform SpawnPosition;
     [HideInInspector] public int m_PlayerNumber;
