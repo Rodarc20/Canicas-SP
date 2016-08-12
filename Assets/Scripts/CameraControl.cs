@@ -10,11 +10,6 @@ public class CameraControl : MonoBehaviour {//esta cosa deberia esar en dentro d
     public void Start(){
         m_InicialRotation = transform.rotation;
         m_InicialPosition = transform.position;
-        //m_Offset = m_InitialParent.transform.position - transform.position;
-        //print (m_Offset);
-        //print ("Calculo");
-        //transform.SetParent(m_Player.transform);//cada vez que cambie de jugador debo darle se cambia el parent, en el peor de los caso se debe usar el punto de inicio
-        //m_Offset = m_Player.transform.position - transform.position;
     }
     public void Update(){//era Last
         transform.position = m_Player.transform.position;//pero esto deberia ser relativo
