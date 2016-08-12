@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour {
             float rot = Random.Range(0f, 360f);
             GameObject obj = Instantiate(m_ObjetivoPrefab, pos, Quaternion.identity) as GameObject;
             obj.GetComponent<Transform>().RotateAround(transform.position, Vector3.up, rot);//deberi estar lejos de los otros puntos
-            print(obj.GetComponent<Transform>().position);
+            //print(obj.GetComponent<Transform>().position);
         }        
     }
     public void SetCameraTarget(){
