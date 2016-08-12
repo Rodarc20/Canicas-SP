@@ -11,6 +11,7 @@ public class CanicaPlayer : MonoBehaviour {
         m_Fired = false;
     }
     public void Update(){
+        print(m_Rigidbody.velocity);
         if(!m_Fired)
             transform.position = m_Player.position;//con esto las canicas disparadas, no siguen la traslacion del jugador
     }
