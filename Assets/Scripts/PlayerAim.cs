@@ -5,7 +5,9 @@ public class PlayerAim : MonoBehaviour {//el jugador en toria es un solo punto, 
     public float m_TraslateSpeed = 50f;
     public float m_RotateSpeed = 90f;
     public Transform m_CenterGameZone;//que dberia estar en la posicion 0, 0.5, 0
+    public Transform m_SpawnPoint;
 
+    //public Transform m_CanicaPlayer;
     private string m_TraslateAxisName;
     private string m_RotateAxisName;
     private float m_TraslateInputValue;
@@ -14,11 +16,11 @@ public class PlayerAim : MonoBehaviour {//el jugador en toria es un solo punto, 
 
     private void Awake(){
         //m_Rigidbody = GetComponent<Rigidbody>();
+        m_TraslateAxisName = "Traslate";//los dos jugadores usan las mismas teclas para interactuar, por lo tanto el nombre de los ejes deberia ser el mismo//esto tendre que modifiacar
+        m_RotateAxisName = "Rotate";
     }
 
     private void Start() {
-        m_TraslateAxisName = "Traslate" + m_PlayerNumber;//los dos jugadores usan las mismas teclas para interactuar, por lo tanto el nombre de los ejes deberia ser el mismo//esto tendre que modifiacar
-        m_RotateAxisName = "Rotate" + m_PlayerNumber;
     }
 
     private void OnEnable(){//quiza deba ser publica, por el intercambio de turnos de los jugadores, tendre que habilitar y deshabilitar la bolita del jugador, y constantemente resetear su posicio
@@ -49,11 +51,19 @@ public class PlayerAim : MonoBehaviour {//el jugador en toria es un solo punto, 
         //esta funcion conserva que el los ejes conserven la posicion realitva, por ejemplo al comienzo forwar mira al centro de la zona, de juego, esto aun se conserva
         //m_Rigidbody.isKinematic = false;
         //deberia moverse su rigidbody tambien//mientras esta cosa se mueva deberia ser kinematic, mejor dicho solo cuando dispare dejara de ser kinematic, y no podramoverse
+        //m_CanicaPlayer.position = new Vector3 (0f, 0f, 0f);
     }
 
     private void Rotate(){
         //transform.Rotate(Vector3.up * m_RotateInputValue * m_RotateSpeed * Time.deltaTime);//debo limitar eso, para ello puedo establecer cierto limistas al inicio, y hsegurarme que este vector resultante, no se aslga de esos valores
         //en algun mometo, la direccion rotara, para aumentar el angulo, a un angulo de disparo, en este momento este codigo no funcionara, la rotacion se tendra que dar con respecto al eje y, pero general
         transform.Rotate(Vector3.up * m_RotateInputValue * m_RotateSpeed * Time.deltaTime, Space.World);//debo limitar eso, para ello puedo establecer cierto limistas al inicio, y hsegurarme que este vector resultante, no se aslga de esos valores
+        //m_CanicaPlayer.rotation = transform.rotation;
+
+    }
+    
+    public void Reset(){
+        transform.position = m_SpawnPoint.position;
+        transform.rotation = m_SpawnPoint.rotation;
     }
 }
