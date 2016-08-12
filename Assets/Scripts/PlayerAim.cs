@@ -37,7 +37,7 @@ public class PlayerAim : MonoBehaviour {//el jugador en toria es un solo punto, 
         m_RotateInputValue = Input.GetAxis(m_RotateAxisName);// si pusiera esto solo dentro de fixed update la rotacion no tiene efecto fisico, creo, por lo tanto cuando presion para ortar nunca entrara en fixed update
     }
 
-    private void FixedUpdate(){
+    private void FixedUpdate(){//podria ir dentro de update
         Traslate();
         Rotate();
     }
@@ -62,7 +62,7 @@ public class PlayerAim : MonoBehaviour {//el jugador en toria es un solo punto, 
 
     }
     
-    public void Reset(){
+    public void Reset(){//poa ahora su unica llamada es en un comentario, pero seria util si usara a varios jugadores
         transform.position = m_SpawnPoint.position;
         transform.rotation = m_SpawnPoint.rotation;
     }

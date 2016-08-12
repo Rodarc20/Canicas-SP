@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public class PlayerManager {
+public class PlayerManager {//no estoy usando esta cosa
     public Color m_PlayerColor;
     public Transform SpawnPosition;
     [HideInInspector] public int m_PlayerNumber;
@@ -10,7 +10,7 @@ public class PlayerManager {
     public int m_Lanzamientos;
     public int m_Objetivos;
 
-    private PlayerAim m_Aim;
+    /*private PlayerAim m_Aim;
     private PlayerThrow m_Throw;//esto son para poder habilitar y deshabilitar el control una vez que se realizo un lanzamiento, aun que dberia hacerlo de forma iterna
 
     
@@ -28,5 +28,5 @@ public class PlayerManager {
     public void DisableControl(){
         m_Aim.enabled = false;
         m_Throw.enabled = false;
-    }
+    }*/
 }

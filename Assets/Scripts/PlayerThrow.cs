@@ -3,7 +3,7 @@ using UnityEngine.UI;//aqui hare modificaciones al ui, por ejemplo la barra de f
 
 public class PlayerThrow : MonoBehaviour {
     public int m_PlayerNumber = 1;
-    public Transform m_ThrowDirection;
+    //public Transform m_ThrowDirection;// no lo uso ya que el el encargado de dar la direccion, es canicaPlayer.cs, podira ser util si el lanzamineto no se hiciera hacia donde apunta el jugador
     public Slider m_Fuerza;
     public float m_MinForce = 0f;
     public float m_MaxForce = 100f;
@@ -12,7 +12,7 @@ public class PlayerThrow : MonoBehaviour {
     public GameObject m_CanicaPlayerPrefab;
     private GameObject m_CanicaPlayer;
     private CanicaPlayer m_ScriptCP;
-    private PlayerAim m_PlayerAim;
+    //private PlayerAim m_PlayerAim;
 
     private string m_ThrowButton;
     private float m_CurrentThrowForce;
@@ -21,7 +21,7 @@ public class PlayerThrow : MonoBehaviour {
 
     void Awake(){
         //m_Rigidbody = GetComponentInChildren<Rigidbody>();
-        m_PlayerAim = GetComponent<PlayerAim>();
+        //m_PlayerAim = GetComponent<PlayerAim>();//no es necesario tener esta referencia aqui
     }
 
     void Start(){
@@ -46,7 +46,7 @@ public class PlayerThrow : MonoBehaviour {
         }
         //tambien deberia regresar a la posicion inical
         //m_PlayerAim.m_CanicaPlayer = m_CanicaPlayer.transform;
-        m_PlayerAim.Reset();
+        //m_PlayerAim.Reset();//o llamar a esta cosa///lo se debe llamar cuando cargo la scene, lo cual se hace solo
         //m_CanicaPlayer.transform.SetParent(transform);
     }
     private void Update(){
@@ -78,6 +78,7 @@ public class PlayerThrow : MonoBehaviour {
         //print (transform.forward);
         //m_CanicaPlayer.GetComponent<Rigidbody>().AddForce(transform.forward * m_CurrentThrowForce, ForceMode.Impulse);
         m_ScriptCP.Fire(transform.forward * m_CurrentThrowForce);//ninguna de las dos funciona, el proble es que en cada update lo regresa a la posicion del jugador, cuando no este disparando
+        //el vector que estoy mandando ya apunta a donde quiero,
         //print ("Fire2");
         //m_Rigidbody.AddExplosionForce(m_CurrentThrowForce, transform.position - transform.forward, 5f);
     }//una ve z que se ha disparado, debo deshabilitar los controles, la pelota sigue por su cuenta

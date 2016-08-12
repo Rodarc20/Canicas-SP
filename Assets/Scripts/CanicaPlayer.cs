@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class CanicaPlayer : MonoBehaviour {
     private bool m_Fired;
     public Rigidbody m_Rigidbody;
-    public Transform m_Player;
+    public Transform m_Player;//este es la posicion del Jugador
     //public Transform m_CanicaPlayer;//creo q ue esto no es necesario
 
     public void Awake(){
@@ -13,10 +13,10 @@ public class CanicaPlayer : MonoBehaviour {
         m_Fired = false;
     }
     public void Update(){
-        if(m_Rigidbody.IsSleeping())
-            print("IS SLEEPING");
+        /*if(m_Rigidbody.IsSleeping())//no funciona muy bien
+            print("IS SLEEPING");*/
         if(!m_Fired)
-            transform.position = m_Player.position;
+            transform.position = m_Player.position;//con esto las canicas disparadas, no siguen la traslacion del jugador
     }
 
     public void Fire(Vector3 fuerza){
