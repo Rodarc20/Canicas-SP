@@ -93,12 +93,12 @@ public class GameManager : MonoBehaviour {
         //tambien deberia comprobar que mi cnica haya sido disparada para incrementar el lnuemro lanzamiento
         bool finalizoLanzamiento = true;
         finalizoLanzamiento = finalizoLanzamiento && (m_CanicaPlayer.IsSleeping() && m_CanicaPlayer.GetComponent<CanicaPlayer>().m_Fired);//di la calinca no se mueve, y ya fue disparada,entoces debe finalizar el alnzamineto
-        print(finalizoLanzamiento);
+        //print(finalizoLanzamiento);
 
         for(int i = 0; i < m_Objetivos.Length; i++){
             if(m_Objetivos[i]){//este IsSleeping, por que creo que nunca la la velocidad e la poelota entra en el rango minimo que estableci, para la canica funciona bien, pero para los objtivos aprece que no
                 finalizoLanzamiento = finalizoLanzamiento && m_Objetivos[i].GetComponent<Rigidbody>().IsSleeping();//si esta quito, retorna verdadero, si se mueve falso,
-                print("Obejtivo " + i + ": " + m_Objetivos[i].GetComponent<Rigidbody>().IsSleeping());
+                //print("Obejtivo " + i + ": " + m_Objetivos[i].GetComponent<Rigidbody>().IsSleeping());
             //laidea es ir comprobanto que todo este quieto, si alguno no esta quieto, finalizoLanzamineto deberia terminar en falso
             }
         }
