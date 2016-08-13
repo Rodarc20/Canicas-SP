@@ -8,7 +8,7 @@ public class CanicaObjetivo : MonoBehaviour {
         m_Rigidbody = GetComponent<Rigidbody>();
     }
     public void Update(){
-        print(m_Rigidbody.velocity);
+        //print(m_Rigidbody.velocity);
     }
     public void FixedUpdate(){
         if(m_Desaceleracion != 0f){
