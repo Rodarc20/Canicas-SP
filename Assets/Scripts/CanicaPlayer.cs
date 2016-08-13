@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class CanicaPlayer : MonoBehaviour {
-    private bool m_Fired;
+    public bool m_Fired;
     public Rigidbody m_Rigidbody;
     public Transform m_Player;//este es la posicion del Jugador
     public PlayerThrow m_PlayerThrow;

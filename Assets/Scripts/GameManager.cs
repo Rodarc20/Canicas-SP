@@ -57,8 +57,10 @@ public class GameManager : MonoBehaviour {
             m_Puntos++;
         }
         if(m_canica.layer == LayerMask.NameToLayer("Jugador")){
+            /*para frenar la bola en 0 movimineto
             m_canica.GetComponent<Rigidbody>().velocity = Vector3.zero;
             m_canica.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+            */
             //m_canica.GetComponent<Rigidbody>().velocity = new Vector3 (0f, 0f, 0f);
             m_Player.GetComponent<PlayerThrow>().Setup();//quiza no deberia reinicar la camara, o tener dos funcines, una para reinicar balon, y otra para reiniciar posicion
             //aqui se deberia activar el script throw
