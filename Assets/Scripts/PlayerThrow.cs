@@ -9,7 +9,7 @@ public class PlayerThrow : MonoBehaviour {
     public float m_MaxForce = 100f;
     public float m_MaxChargeTime = 2f;//un segudno en cargar toda la barra de fuerza
     public GameObject m_CanicaPlayerPrefab;
-    private GameObject m_CanicaPlayer;
+    public GameObject m_CanicaPlayer;//instancia de una canica de jugador
     private CanicaPlayer m_ScriptCP;
 
     private string m_ThrowButton;

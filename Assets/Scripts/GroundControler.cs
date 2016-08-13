@@ -17,7 +17,8 @@ public class GroundControler : MonoBehaviour {
             //los objetivos tambien deben tener un script para poider agregar alguna desaceleracion
         }
     }
-    public void OnTriggerExit(Collider other){
+    //debo almacenar todos las canicas que ingresen, sean de jugador o objetivo, y pasarles la desaceleracion
+    public void OnTriggerExit(Collider other){//para devolver las desaceleraciones a su lugar
         GameObject canica = other.gameObject;
         if(canica.layer == LayerMask.NameToLayer("Jugador")){
             CanicaPlayer canicaPlayer = canica.GetComponent<CanicaPlayer>();
@@ -33,8 +34,5 @@ public class GroundControler : MonoBehaviour {
         }
     }
 }
-    //podira usar la funcion addforce, pero dentro de un fixedUpdate(), solo aui funica, le doy la direccion que siemrpre esta cmabiando veocity, y el parametro de desaceleracion
-    //loque se me ocurre es hacer que cuando una canica colisione con la superficie, le añada una desaceleracin en contra de su velocidad, hasta hacerla c0, debo usar velocity, una fracion de esto
-    //cuando salga o deje esa colicion, debo esa desaceleracin ya no sumar a la velocidad, que siga su curso normalized
-    //el vector velocidad, tiene sus tres componentes, su magnitud es la velocida de esa direccion, al cambiar el sentido, debo multiplicarla por un factor, la pregunta es si asl usar el operador * es la forma correcta, de obtener un multiplo de ese vector o no
-    //o poner la desaceleracion como un vector estatico, es decir siempre deshacelera digamos  5/ms2 entonces la magnitu del vector resultante, cada segudno debo reducirlo en 5 unidades, esto cambiarlo en cada fixedupdate, suavizando con el delta time
+//otra alternativa es que esta calse tenga su funcion fixed update, y todos las canicas que entren se les aplicadesaceleracion en su moviemineto, el problema es qperderia control en la condicion para poner a 0 el movimiento
+//o tal vez no
