@@ -37,7 +37,7 @@ public class CanicaPlayer : MonoBehaviour {
                 //m_Rigidbody.velocity = Vector3.zero;
                 //m_Rigidbody.angularVelocity = Vector3.zero;
 
-                print("Velocidad 0");//en las colisiones a veces se queda quieta, provocario un falso sleeping, que haria que se elimine antes, de los debido
+                //print("Velocidad 0");//en las colisiones a veces se queda quieta, provocario un falso sleeping, que haria que se elimine antes, de los debido
                 //hay un pequeño error al comienzo del lanzamiento, me deja entrara a esta funcion uan vez antes de que entre en contacto con el piso despues de lanzarla
             }
         }
@@ -52,6 +52,10 @@ public class CanicaPlayer : MonoBehaviour {
 
             //deberia descativar el script PlayerThrow, y activarse denuevo cuando se cree una nuva canica
         }
+    }
+
+    public void OnTriggerEnter(Collider other){//esto es para mejorar un poco el sistema de colisiones
+
     }
 }
 //basicamente es para que la canica siga la psicion del jugador cuand este se traslada, tambien podria hacer que controle la fuerza a tra vez de este script, y ya solo player throw, se encarga de transmitir la informacion necesaria
