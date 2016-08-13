@@ -55,7 +55,8 @@ public class PlayerThrow : MonoBehaviour {
             m_Fuerza.value = m_CurrentThrowForce;
             //aqui tambien van modificaciones la slider de la fuerz de lanzamiento
         }
-        else if(Input.GetButtonUp(m_ThrowButton) && !m_Throwed){//cuadno suelto el boton y aun no he disparado
+        if(Input.GetButtonUp(m_ThrowButton) && !m_Throwed){//cuadno suelto el boton y aun no he disparado, eliminado el elseif
+            //m_Throwed = true;
             Fire();
         }
     }
