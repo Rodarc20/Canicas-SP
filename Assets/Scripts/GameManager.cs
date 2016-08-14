@@ -23,9 +23,12 @@ public class GameManager : MonoBehaviour {
     public Transform[] m_Objetivos;
     public void Awake(){
         SetCameraInitial();
+        //SetCameraTarget();//quiza esto deberia estar dentro de spawnplayer();
+    }
+
+    public void Start(){
         SpawnPlayer();
         SpawnObjectives();
-        //SetCameraTarget();//quiza esto deberia estar dentro de spawnplayer();
     }
     public void SpawnPlayer(){
         m_Player = Instantiate(m_PlayerPrefab, m_SpawnPosition.position, m_SpawnPosition.rotation) as GameObject;
@@ -43,18 +46,35 @@ public class GameManager : MonoBehaviour {
         m_Objetivos = new Transform [m_NumeroCanicas];//o quiza geerar esto al comienxo
         //for(int i = 0; i < m_NumeroCanicas; i++){//deberi usar m_Obejtivos.Length
         for(int i = 0; i < m_Objetivos.Length; i++){//deberi usar m_Obejtivos.Length
-            Vector3 pos = new Vector3 (0f, 0.5f, Random.Range(0f, 8f));
-            float rot = Random.Range(0f, 360f);
-            //antes de instanciar necesito predecir la posicion, para evitar que aparzcan en la misma posicin
-            //m_Objetivos[i] = Instantiate(m_ObjetivoPrefab, pos, Quaternion.identity) as Transform;//esta forma para instanciar eso no funcion, es mejor retornar como gameobject para evitar null references
-            GameObject obj = Instantiate(m_ObjetivoPrefab, pos, Quaternion.identity) as GameObject;
-            obj.GetComponent<Transform>().RotateAround(transform.position, Vector3.up, rot);//deberi estar lejos de los otros puntos  
-            m_Objetivos[i] = obj.GetComponent<Transform>();
+            GameObject obj = Instantiate(m_ObjetivoPrefab, posicionValida(), Quaternion.identity) as GameObject;//
 
-            //print(obj.GetComponent<Transform>().position);
-            //debo conservar estos trasnsform, apra tambien conservar sus srctips y saber cuadno hanterminado de moverse
-            //y para colocarlo en puntos distintos
+            //lo que hare es crear un transform, y posicionarlo segun los calculos, luego ese trasnform lo verifica si es valido, hago la isntancia usasnod ese transform como posicion
         }        
+    }
+
+    //deberia tener una funcion que me de una posicion valida
+    private Vector3 posicionValida(){
+        Transform posicion = Instantiate(m_SpawnPosition, new Vector3 (0f, 0.5f, 0f), Quaternion.identity) as Transform;//donde probare las posiciion generada, este es una clon del objeto trasnsform
+        //no es aconsejable usar el transform de este gamobject, falla
+        posicion.position = new Vector3 (0f, 0.5f, Random.Range(0f, 8f));//podira mezclasr la anterior
+        posicion.RotateAround(transform.position, Vector3.up, Random.Range(0f, 360f));//obtener defrente la rotacion*/
+        while(!EsValido(posicion)){
+            posicion.position = new Vector3 (0f, 0.5f, Random.Range(0f, 8f));//podira mezclasr la anterior
+            posicion.RotateAround(transform.position, Vector3.up, Random.Range(0f, 360f));//obtener defrente la rotacion*/
+        }
+        return posicion.position;
+    }
+
+    private bool EsValido(Transform posicion){
+        bool result = true;
+        for(int i = 0; i < m_Objetivos.Length; i++){//odira reducir un if aqui a dentro, si recibiera el i desde el ques se llamo en el spawnobjectives
+            if(m_Objetivos[i]){
+                result = result && Vector3.Distance(posicion.position, m_Objetivos[i].position) >= 1f;
+                /*if(Vector3.Distance(posicion.position, m_Objetivos[i].position) >= 1f){//aun que si tuviera un if para que retorne defrente la funcion no pasaria por todas siempre, no se de que forma es mejor
+                }*/
+            }
+        }
+        return result;
     }
     public void SetCameraTarget(){
         m_CameraControl.m_Player = m_Player;
@@ -76,16 +96,6 @@ public class GameManager : MonoBehaviour {
             Destroy(other.gameObject, 1f);//para que desaparezcan dos segundo despues, ahora el problema es que cuando destruyo una, no la he quitado del array
             SetTextScore();//otr opcion es solo llamar cuando haya modicificacion
         }
-        /*if(m_canica.layer == LayerMask.NameToLayer("Jugador")){
-            /*para frenar la bola en 0 movimineto
-            m_canica.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            m_canica.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
-            * /
-            //m_canica.GetComponent<Rigidbody>().velocity = new Vector3 (0f, 0f, 0f);
-            m_Player.GetComponent<PlayerThrow>().Setup();//quiza no deberia reinicar la camara, o tener dos funcines, una para reinicar balon, y otra para reiniciar posicion
-            //aqui se deberia activar el script throw
-            m_LanzamientoNumero++;
-        }*/
         if(m_Puntos == m_NumeroCanicas)
             m_WinText.color = Color.white;//aqui debo finalizar el juego
     }
