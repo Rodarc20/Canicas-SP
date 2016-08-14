@@ -45,4 +45,5 @@ public class PlayerAim : MonoBehaviour {//el jugador en toria es un solo punto, 
         transform.position = m_SpawnPoint.position;
         transform.rotation = m_SpawnPoint.rotation;
     }
+    //si modificara la angulo de disparo, este seria el script encargado de eso
 }

@@ -15,7 +15,6 @@ public class CanicaPlayer : MonoBehaviour {
         //m_Move = false;
     }
     public void Update(){
-        //print(m_Rigidbody.velocity);
         if(!m_Fired){
             transform.position = m_Player.position;//con esto las canicas disparadas, no siguen la traslacion del jugador
         }
@@ -26,9 +25,6 @@ public class CanicaPlayer : MonoBehaviour {
             if(m_Desaceleracion != 0f){
                 m_Rigidbody.AddForce(m_Rigidbody.velocity.normalized * -1 * m_Desaceleracion, ForceMode.Acceleration);//esta desaceleracion funciona
             }
-            //print(m_Rigidbody.velocity.magnitude);
-            //print(m_Rigidbody.velocity.magnitude);
-            //if(m_Rigidbody.velocity.magnitude <= 0.001f && m_Desaceleracion != 0f){//listo
             if((m_Rigidbody.velocity.magnitude <= 0.01f || m_Rigidbody.velocity.normalized == direccion*-1f) && m_Rigidbody.velocity != Vector3.zero){//este evita que entre constante menete a reemplazar por vector zero
                 //en este momento el movimiento ya es muy pequeño, puedo cambia r los valores de volocity y angleVelocity a 0, para detener los calculos corespondientes, y en el caso de canica player terminar el turno
                 m_Rigidbody.isKinematic = true;//esto deteiene el movimieitno, evita que le afecten fuerzas fisicas
@@ -36,7 +32,6 @@ public class CanicaPlayer : MonoBehaviour {
                 //m_Move = false;
                 //m_Rigidbody.velocity = Vector3.zero;
                 //m_Rigidbody.angularVelocity = Vector3.zero;
-
                 //print("Velocidad 0");//en las colisiones a veces se queda quieta, provocario un falso sleeping, que haria que se elimine antes, de los debido
                 //hay un pequeño error al comienzo del lanzamiento, me deja entrara a esta funcion uan vez antes de que entre en contacto con el piso despues de lanzarla
             }
@@ -48,14 +43,12 @@ public class CanicaPlayer : MonoBehaviour {
             m_Fired = true;
             //m_Move = true;
             m_Rigidbody.AddForce(fuerza, ForceMode.Impulse);
-
-
             //deberia descativar el script PlayerThrow, y activarse denuevo cuando se cree una nuva canica
         }
     }
 
-    public void OnTriggerEnter(Collider other){//esto es para mejorar un poco el sistema de colisiones
+    /*public void OnTriggerEnter(Collider other){//esto es para mejorar un poco el sistema de colisiones
 
-    }
+    }*/
 }
 //basicamente es para que la canica siga la psicion del jugador cuand este se traslada, tambien podria hacer que controle la fuerza a tra vez de este script, y ya solo player throw, se encarga de transmitir la informacion necesaria

@@ -3,7 +3,6 @@ using UnityEngine.UI;//aqui hare modificaciones al ui, por ejemplo la barra de f
 
 public class PlayerThrow : MonoBehaviour {
     public int m_PlayerNumber = 1;
-    //public Transform m_ThrowDirection;// no lo uso ya que el el encargado de dar la direccion, es canicaPlayer.cs, podira ser util si el lanzamineto no se hiciera hacia donde apunta el jugador
     public Slider m_Fuerza;
     public float m_MinForce = 0f;
     public float m_MaxForce = 100f;
@@ -16,9 +15,6 @@ public class PlayerThrow : MonoBehaviour {
     private float m_CurrentThrowForce;
     private float m_ChargeSpeed;
     private bool m_Throwed;
-
-    void Awake(){//no hay nada en particular para este script
-    }
 
     void Start(){
         m_ThrowButton = "Fire1";
@@ -37,7 +33,6 @@ public class PlayerThrow : MonoBehaviour {
             m_ScriptCP = m_CanicaPlayer.GetComponent<CanicaPlayer>();
             m_ScriptCP.m_Player = transform; //m_CanicaPlayer.GetComponent<CanicaPlayer>().m_Player = transform;
         }
-        //m_PlayerAim.Reset();//o llamar a esta cosa///lo se debe llamar cuando cargo la scene, lo cual se hace solo
     }
     private void Update(){
         //si me paso del maximo de la barra no debo lanzar la canica, por que puede que el jugador aun quiera modificar la direccion, por ello podra aun moverse, solo se disparara cuando el jugador suelte la tecla de deisparo
