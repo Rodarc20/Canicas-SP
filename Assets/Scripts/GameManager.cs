@@ -43,13 +43,13 @@ public class GameManager : MonoBehaviour {
         m_Objetivos = new Transform [m_NumeroCanicas];//o quiza geerar esto al comienxo
         for(int i = 0; i < m_Objetivos.Length; i++){//deberi usar m_Obejtivos.Length
             GameObject obj = Instantiate(m_ObjetivoPrefab, posicionValida(), Quaternion.identity) as GameObject;//
-
-            //lo que hare es crear un transform, y posicionarlo segun los calculos, luego ese trasnform lo verifica si es valido, hago la isntancia usasnod ese transform como posicion
+            m_Objetivos[i] = obj.GetComponent<Transform>();
         }        
     }
 
     //deberia tener una funcion que me de una posicion valida
     private Vector3 posicionValida(){
+        Vector3 res;
         Transform posicion = Instantiate(m_SpawnPosition, new Vector3 (0f, 0.5f, 0f), Quaternion.identity) as Transform;//donde probare las posiciion generada, este es una clon del objeto trasnsform
         //no es aconsejable usar el transform de este gamobject, falla
         posicion.position = new Vector3 (0f, 0.5f, Random.Range(0f, 8f));//podira mezclasr la anterior
@@ -58,12 +58,14 @@ public class GameManager : MonoBehaviour {
             posicion.position = new Vector3 (0f, 0.5f, Random.Range(0f, 8f));//podira mezclasr la anterior
             posicion.RotateAround(transform.position, Vector3.up, Random.Range(0f, 360f));//obtener defrente la rotacion*/
         }
-        return posicion.position;
+        res = posicion.position;
+        Destroy(posicion.gameObject);
+        return res;
     }
 
     private bool EsValido(Transform posicion){
         bool result = true;
-        for(int i = 0; i < m_Objetivos.Length; i++){//odira reducir un if aqui a dentro, si recibiera el i desde el ques se llamo en el spawnobjectives
+        for(int i = 0; i < m_Objetivos.Length && result; i++){//odira reducir un if aqui a dentro, si recibiera el i desde el ques se llamo en el spawnobjectives
             if(m_Objetivos[i]){
                 result = result && Vector3.Distance(posicion.position, m_Objetivos[i].position) >= 1f;
             }
