@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public class CameraControl : MonoBehaviour {//esta cosa deberia esar en dentro de un obejto adicional, no en la camara
-    public GameObject m_Player;//quiza deba ser solo un Transform, o array de transforma para varios jugadores
+    public GameObject m_Player;// al jugador que sigue la camara
     private Vector3 m_Offset;
     private Vector3 m_InicialPosition;
     private Quaternion m_InicialRotation;
@@ -12,15 +12,15 @@ public class CameraControl : MonoBehaviour {//esta cosa deberia esar en dentro d
         m_InicialPosition = transform.position;
     }
     public void Update(){
-        transform.position = m_Player.transform.position;//pero esto deberia ser relativo
+        transform.position = m_Player.transform.position;
         Quaternion rotate = m_Player.transform.rotation * Quaternion.AngleAxis(45f, Vector3.right);//para corregir la rotacion, por haber tomado el spawnpint como inical
-        transform.rotation = rotate;//pero esto deberia ser relativo
+        transform.rotation = rotate;
     }
     public void SetStartPosition(){
         transform.position = m_InicialPosition;
         transform.rotation = m_InicialRotation;
     }
     public void SetToPlayer(){//seria necesaria si utilizo varios jugadores
-        SetStartPosition();//para que sigan al jugador y no el 
+        SetStartPosition();
     }
 }
