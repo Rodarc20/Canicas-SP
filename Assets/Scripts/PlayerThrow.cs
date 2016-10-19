@@ -2,8 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;//aqui hare modificaciones al ui, por ejemplo la barra de fuerza o marcador de llegada
 
 public class PlayerThrow : MonoBehaviour {
-    public int m_PlayerNumber = 1;
-    public Slider m_Fuerza;
+    public int m_PlayerNumber = 1;//no usado
+    public Slider m_Fuerza;//referenciado a travez del inspector
     public float m_MinForce = 0f;
     public float m_MaxForce = 100f;
     public float m_MaxChargeTime = 2f;//un segudno en cargar toda la barra de fuerza
@@ -19,7 +19,6 @@ public class PlayerThrow : MonoBehaviour {
     void Start(){
         m_ThrowButton = "Fire1";
         m_ChargeSpeed = (m_MaxForce - m_MinForce) / m_MaxChargeTime;
-        //Setup()//por ahora lo llamo dentro de spawnPlayer en el gamemanager
     }
     private void OnEnable(){
         m_CurrentThrowForce = m_MinForce;
@@ -47,7 +46,6 @@ public class PlayerThrow : MonoBehaviour {
         else if(Input.GetButton(m_ThrowButton) && !m_Throwed){//cuando mantendo presionado el boton pero aun no he disparado
             m_CurrentThrowForce += m_ChargeSpeed * Time.deltaTime;
             m_Fuerza.value = m_CurrentThrowForce;
-            //aqui tambien van modificaciones la slider de la fuerz de lanzamiento
         }
         if(Input.GetButtonUp(m_ThrowButton) && !m_Throwed){//cuadno suelto el boton y aun no he disparado, eliminado el elseif
             //m_Throwed = true;
@@ -56,6 +54,6 @@ public class PlayerThrow : MonoBehaviour {
     }
     private void Fire(){
         m_Throwed = true;
-        m_ScriptCP.Fire(transform.forward * m_CurrentThrowForce);//ninguna de las dos funciona, el proble es que en cada update lo regresa a la posicion del jugador, cuando no este disparando
-    }//una ve z que se ha disparado, debo deshabilitar los controles, la pelota sigue por su cuenta
+        m_ScriptCP.Fire(transform.forward * m_CurrentThrowForce);
+    }
 }
