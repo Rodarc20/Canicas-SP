@@ -41,7 +41,6 @@ public class PlayerThrow : MonoBehaviour {
             m_Fuerza.value = m_CurrentThrowForce;//hay problemas con este if,buscar solucion
         }
         else if(Input.GetButtonDown(m_ThrowButton)){//cuando presioo por primera vez el boton
-            m_Throwed = false;
             m_CurrentThrowForce = m_MinForce;
             m_Fuerza.value = m_CurrentThrowForce;
         }

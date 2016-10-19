@@ -6,15 +6,12 @@ public class GroundControler : MonoBehaviour {
         if(canica.layer == LayerMask.NameToLayer("Jugador")){
             CanicaPlayer canicaPlayer = canica.GetComponent<CanicaPlayer>();
             if(canicaPlayer.m_Fired){
-                //Rigidbody canicaRigidbody = canica.GetComponent<Rigidbody>();
                 canicaPlayer.m_Desaceleracion = 1f;
             }
         } 
         if(canica.layer == LayerMask.NameToLayer("Objetivo")){
             CanicaObjetivo canicaObjetivo = canica.GetComponent<CanicaObjetivo>();
             canicaObjetivo.m_Desaceleracion = 1f;
-            //Rigidbody canicaRigidbody = canica.GetComponent<Rigidbody>();
-            //los objetivos tambien deben tener un script para poider agregar alguna desaceleracion
         }
     }
     //debo almacenar todos las canicas que ingresen, sean de jugador o objetivo, y pasarles la desaceleracion
@@ -23,14 +20,12 @@ public class GroundControler : MonoBehaviour {
         if(canica.layer == LayerMask.NameToLayer("Jugador")){
             CanicaPlayer canicaPlayer = canica.GetComponent<CanicaPlayer>();
             if(canicaPlayer.m_Fired){
-                //Rigidbody canicaRigidbody = canica.GetComponent<Rigidbody>();
                 canicaPlayer.m_Desaceleracion = 0f;
             }
         } 
         if(canica.layer == LayerMask.NameToLayer("Objetivo")){
             CanicaObjetivo canicaObjetivo = canica.GetComponent<CanicaObjetivo>();
             canicaObjetivo.m_Desaceleracion = 0f;
-            //Rigidbody canicaRigidbody = canica.GetComponent<Rigidbody>();
         }
     }
 }
