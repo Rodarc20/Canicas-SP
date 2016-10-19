@@ -14,7 +14,7 @@ public class PlayerThrow : MonoBehaviour {
     private string m_ThrowButton;
     private float m_CurrentThrowForce;
     private float m_ChargeSpeed;
-    private bool m_Throwed;
+    public bool m_Throwed;
 
     void Start(){
         m_ThrowButton = "Fire1";
@@ -31,6 +31,7 @@ public class PlayerThrow : MonoBehaviour {
         if(m_CanicaPlayer){
             m_ScriptCP = m_CanicaPlayer.GetComponent<CanicaPlayer>();
             m_ScriptCP.m_Player = transform; //m_CanicaPlayer.GetComponent<CanicaPlayer>().m_Player = transform;
+            m_ScriptCP.m_PlayerThrow = GetComponent<PlayerThrow>();
         }
     }
     private void Update(){
@@ -53,7 +54,7 @@ public class PlayerThrow : MonoBehaviour {
         }
     }
     private void Fire(){
-        m_Throwed = true;
         m_ScriptCP.Fire(transform.forward * m_CurrentThrowForce);
+        m_Throwed = true;
     }
 }

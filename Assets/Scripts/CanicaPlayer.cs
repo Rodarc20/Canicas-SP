@@ -27,11 +27,16 @@ public class CanicaPlayer : MonoBehaviour {
                 m_Rigidbody.isKinematic = false;//esto lo vuelve a poner modificable por fuerzas fisicas
             }
         }
+        else {
+            if(m_PlayerThrow.m_Throwed && m_Rigidbody.velocity != Vector3.zero){
+                m_Fired = true;
+            }
+        }
     }
 
     public void Fire(Vector3 fuerza){
         if(!m_Fired){
-            m_Fired = true;
+            //m_Fired = true;
             m_Rigidbody.AddForce(fuerza, ForceMode.Impulse);
         }
     }
